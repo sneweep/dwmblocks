@@ -1,0 +1,5 @@
+#!/bin/bash
+YEAR=$(date '+%Y')
+YEAR="$(($YEAR % 100))"
+DATE="$(date +%a) $YEAR/$(date '+%m/%d') $(date '+%I:%M%p')"
+echo "$DATE |"
