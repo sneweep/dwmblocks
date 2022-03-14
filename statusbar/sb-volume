@@ -1,11 +1,41 @@
 #!/bin/sh
 
-info="$(pactl list sinks)"
-vol=$(pamixer --get-volume)
-mute=$(pamixer --get-mute)
-
-if [ "$mute" = true ]; then
-    echo "m $vol%"
-else
-    echo "v $vol%"
-fi
+sink="$(pactl info | awk '$1 == "Default" && $2 == "Sink:" {print $3}')"
+[ -n "$sink" ] || exit
+pactl list sinks | awk -v sink="$sink" '
+    BEGIN {
+        ICONsn = "v " # headphone unplugged, not muted
+        ICONsm = "m " # headphone unplugged, muted
+        ICONhn = "v " # headphone plugged in, not muted
+        ICONhm = "m " # headphone plugged in, muted
+    }
+    f {
+        if ($1 == "Mute:" && $2 == "yes") {
+            m = 1
+        } else if ($1 == "Volume:") {
+            if ($3 == $10) {
+                vb = $5
+            } else {
+                vl = $5
+                vr = $12
+            }
+        } else if ($1 == "Active" && $2 == "Port:") {
+            if (tolower($3) ~ /headphone/)
+                h = 1
+            exit
+        }
+        next
+    }
+    $1 == "Name:" && $2 == sink {
+        f = 1
+    }
+    END {
+        if (f) {
+            printf "%s", h ? (m ? ICONhm : ICONhn) : (m ? ICONsm : ICONsn)
+            if (vb)
+                print vb
+            else
+                printf "L%s R%s\n", vl, vr
+        }
+    }
+'
