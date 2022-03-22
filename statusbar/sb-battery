@@ -1,2 +1,6 @@
 #!/bin/bash
 echo -n "$(acpi | awk '{print $4}' | sed s/,//)"
+
+case $BUTTON in 
+    1) notify-send "battery" ;;
+esac

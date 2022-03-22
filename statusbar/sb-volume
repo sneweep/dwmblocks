@@ -39,3 +39,10 @@ pactl list sinks | awk -v sink="$sink" '
         }
     }
 '
+
+
+case $BUTTON in 
+        1) pavucontrol ;;
+        4) pactl set-sink-volume @DEFAULT_SINK@ +2% && kill -44 $(pidof dwmblocks) ;;
+        5) pactl set-sink-volume @DEFAULT_SINK@ -2% && kill -44 $(pidof dwmblocks) ;;
+esac

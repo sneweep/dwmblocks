@@ -2,3 +2,7 @@
 
 cpu="$(top -bn 1 | awk '/^%Cpu/ {print int($2 + $4 + $6)"%"}')"
 echo "$cpu"
+
+case $BUTTON in 
+        1) st -e htop ;;
+esac
