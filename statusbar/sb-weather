@@ -1,16 +1,12 @@
 #!/bin/sh
 python3 ~/.scripts/weather.py
 
-weatherreport="/home/bigmac/Templates/weatherreport"
-getforecast() { curl -sf "wttr.in/$LOCATION" > "$weatherreport" || exit 1 ;}
-
 currentweather="/home/bigmac/Templates/currentweather"
 getweather() { python3 "/home/bigmac/.scripts/weather.py" > "$currentweather" || exit 1 ;}
 
 getweather
-getforecast
 
 case $BUTTON in 
-        1) getweather && getforecast ;;
+        1) getweather;;
         3) xdotool key "super+9" && google-chrome "https://www.google.com/search?q=weather" &;;
 esac

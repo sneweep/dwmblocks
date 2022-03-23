@@ -1,5 +1,7 @@
 #!/bin/bash
-echo -n "$(acpi | awk '{print $4}' | sed s/,//)"
+b="$(acpi | awk '{print $4}' | sed s/,//)"
+battery=${b%?}
+echo "[BAT $battery]"
 
 case $BUTTON in 
     1) notify-send "battery" ;;
