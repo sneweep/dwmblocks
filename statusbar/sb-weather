@@ -1,8 +1,8 @@
 #!/bin/sh
 python3 ~/.scripts/weather.py
 
-currentweather="/home/bigmac/Templates/currentweather"
-getweather() { python3 "/home/bigmac/.scripts/weather.py" > "$currentweather" || exit 1 ;}
+currentweather="$HOME/.tmp/currentweather"
+getweather() { python3 "$HOME/.scripts/weather.py" > "$currentweather" || exit 1 ;}
 
 getweather
 
