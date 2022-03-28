@@ -7,6 +7,6 @@ getweather() { python3 "$HOME/.scripts/weather.py" > "$currentweather" || exit 1
 getweather
 
 case $BUTTON in 
-        1) getweather;;
-        3) xdotool key "super+9" && google-chrome "https://www.google.com/search?q=weather" &;;
+        1) xdotool key "super+9" && google-chrome "https://www.google.com/search?q=weather" &;;
+        3) getweather;;
 esac
