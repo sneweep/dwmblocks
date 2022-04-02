@@ -1,12 +1,6 @@
 #!/bin/sh
-python3 ~/.scripts/weather.py
-
-currentweather="$HOME/.tmp/currentweather"
-getweather() { python3 "$HOME/.scripts/weather.py" > "$currentweather" || exit 1 ;}
-
-getweather
+python3 $HOME/.scripts/weather.py
 
 case $BUTTON in 
         1) xdotool key "super+9" && google-chrome "https://www.google.com/search?q=weather" &;;
-        3) getweather;;
 esac
