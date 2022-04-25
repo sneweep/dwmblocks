@@ -3,7 +3,7 @@ static const Block blocks[] = {
 	/*Icon*/	/*Command*/		/*Update Interval*/	/*Update Signal*/
 	{"", "~/suckless/dwmblocks/statusbar/sb-volume",     0,     10},
 
-	{"", "~/suckless/dwmblocks/statusbar/sb-cpu",        10,    1},
+//	{"", "~/suckless/dwmblocks/statusbar/sb-cpu",        10,    1},
 
 	{"", "~/suckless/dwmblocks/statusbar/sb-battery",    10,    2},
 
