@@ -2,7 +2,7 @@
 YEAR=$(date '+%Y')
 YEAR="$(($YEAR % 100))"
 DATE="$(date +%a) $YEAR/$(date '+%b/%d') $(date '+%I:%M%p')"
-echo "[$DATE]"
+echo "$DATE"
 
 case $BUTTON in 
     1) notify-send $(date '+%M:%S') ;;

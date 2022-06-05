@@ -4,10 +4,10 @@ sink="$(pactl info | awk '$1 == "Default" && $2 == "Sink:" {print $3}')"
 [ -n "$sink" ] || exit
 volume="$(pactl list sinks | awk -v sink="$sink" '
     BEGIN {
-        ICONsn = "[VOL " # headphone unplugged, not muted
-        ICONsm = "[MUTE " # headphone unplugged, muted
-        ICONhn = "[VOL " # headphone plugged in, not muted
-        ICONhm = "[MUTE " # headphone plugged in, muted
+        ICONsn = "VOL " # headphone unplugged, not muted
+        ICONsm = "MUTE " # headphone unplugged, muted
+        ICONhn = "VOL " # headphone plugged in, not muted
+        ICONhm = "MUTE " # headphone plugged in, muted
     }
     f {
         if ($1 == "Mute:" && $2 == "yes") {
@@ -41,7 +41,7 @@ volume="$(pactl list sinks | awk -v sink="$sink" '
 ')"
 
 v2=${volume%?}
-echo "$v2]"
+echo "$v2"
 
 case $BUTTON in 
         1) pavucontrol ;;
